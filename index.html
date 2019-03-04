@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Trivia Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+
+<body>
+    <!-- The Container holding the whole program -->
+
+    <!-- Time Left Id -->
+    <div id="time-left"></div>
+    <div class="container p-3">
+        <!-- The Main Header  -->
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <font face="Comic Sans MS" size="70">The Trivia Game!</font>
+            </div>
+        </div>
+        <!-- The container holding the Time Remaining and questions -->
+        <div class="container">
+
+            <div class="container p-3">
+                <div class="col-3-lg">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            Time Remaining
+                        </div>
+                        <div class="text-center" id="timer-count"></div>
+                    </div>
+                    <div id="score"></div>
+                    <div class="text-center">
+                        Question :
+                        <div id="Question"></div>
+                        <button id="A" class="choice" onclick="checkAnswer('A')"></button>
+                        <button id="B" class="choice" onclick="checkAnswer('B')"></button>
+                        <button id="C" class="choice" onclick="checkAnswer('C')"></button>
+                        <button id="D" class="choice" onclick="checkAnswer('D')"></button>
+
+                    </div>
+                    <div id="Outcome"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <!--jquery source -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Javascript Source -->
+    <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>

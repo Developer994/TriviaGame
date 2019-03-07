@@ -1,5 +1,5 @@
 // Since we give the user 29 seconds to choose the right option, we need a timer starting from 29 seconds.
-var timer = 30;
+var timer = 10;
 
 // Holds our interval id when the program is executed
 var intervalId;
@@ -14,6 +14,7 @@ var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
+var scoreCount = document.getElementById("scoreCount");
 
 
 // The Questions Array
@@ -63,7 +64,7 @@ var score = 0;
 // Creates a function that will render the question. 
 function renderQuestion() {
     let q = questions[currentQuestion];
-
+    console.log("This is the value of q", q, " and this is the value of current question " + currentQuestion);
     question.innerHTML = "<p>" + q.question + "</p>";
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
@@ -88,18 +89,22 @@ function decrement() {
 
     //  Show the number in the #show-number tag.
     $("#timer-count").html("<h2>" + timer + "</h2>");
+    console.log("The timer starts to decrement here" + timer);
 
 
-    //  Once number hits zero...
+    //  Once timer hits zero...
     if (timer === 0) {
         // Timer Stops
+
         stop();
-        currentQuestion++;
+        console.log("The Current question: ", currentQuestion, " and last question", lastQuestion);
+        // The 3 second timer after user's input.
+
         if (currentQuestion < lastQuestion) {
-            currentQuestion++;
-            // The added  renderQuestion() allows the game to move on to the next question.
-            renderQuestion();
-            timer = 30;
+
+            console.log("User made no input, so the answer was given to them")
+            document.getElementById("Outcome").innerHTML = "Sorry, but times up for this question. The correct answer was " + questions[currentQuestion].correct;
+            set3Secs();
 
         }
     }
@@ -137,12 +142,12 @@ function checkAnswer(answer) {
         document.getElementById("Outcome").innerHTML = "You're Correct!"
         console.log("Correct answer was chosen");
         score++;
-        setTimeout(questions.scoreCount, 3 * 1000);
-    } else {
-        document.getElementById("Outcome").innerHTML = "Sorry, but that was incorrect";
-        // If the user is wrong
-        console.log("Wrong answer was chosen")
 
+    } else {
+        document.getElementById("Outcome").innerHTML = "Sorry, but that was incorrect. The correct answer was " + questions[currentQuestion].correct;
+        // If the user is wrong
+        console.log("Wrong answer was chosen. Correct Answer was ", questions[currentQuestion].correct)
+        set3Secs()
     }
     timer = 0;
     if (currentQuestion < lastQuestion) {
@@ -150,11 +155,33 @@ function checkAnswer(answer) {
 
         // The added  renderQuestion() allows the game to move on to the next question.
         renderQuestion();
-        timer = 30;
+        timer = 10;
     } else {
         console.log("The game is finished");
         clearInterval(intervalId);
     }
+}
+
+// Timer for the 3 seconds after the user's input
+function set3Secs() {
+    console.log("setting up the 3 sec timer");
+    var threeSecTimer = setTimeout(declare, 3 * 1000);
+
+}
+
+function declare() {
+    // clear the outcome 
+    // render the next question
+    // Set the game timer back to 30
+    // Run the timer of 30 seconds
+    document.getElementById("Outcome").innerHTML = "";
+    currentQuestion++;
+    console.log(" Current question goes up after timer hits 0" + currentQuestion);
+    // The added  renderQuestion() allows the game to move on to the next question.
+    renderQuestion();
+    timer = 10;
+    run();
+    console.log("This timer is for restarting the timer beack to 30 " + timer);
 }
 
 

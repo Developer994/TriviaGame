@@ -1,5 +1,5 @@
 // Since we give the user 29 seconds to choose the right option, we need a timer starting from 29 seconds.
-var timer = 10;
+var timer = 31;
 
 // Holds our interval id when the program is executed
 var intervalId;
@@ -98,12 +98,13 @@ function decrement() {
 
         stop();
         console.log("The Current question: ", currentQuestion, " and last question", lastQuestion);
-        // The 3 second timer after user's input.
+
 
         if (currentQuestion < lastQuestion) {
 
             console.log("User made no input, so the answer was given to them")
             document.getElementById("Outcome").innerHTML = "Sorry, but times up for this question. The correct answer was " + questions[currentQuestion].correct;
+            // The 3 second timer after user's input.
             set3Secs();
 
         }
@@ -147,15 +148,16 @@ function checkAnswer(answer) {
         document.getElementById("Outcome").innerHTML = "Sorry, but that was incorrect. The correct answer was " + questions[currentQuestion].correct;
         // If the user is wrong
         console.log("Wrong answer was chosen. Correct Answer was ", questions[currentQuestion].correct)
-        set3Secs()
+
     }
     timer = 0;
-    if (currentQuestion < lastQuestion) {
-        currentQuestion++;
 
+    if (currentQuestion < lastQuestion) {
+
+        currentQuestion++;
         // The added  renderQuestion() allows the game to move on to the next question.
         renderQuestion();
-        timer = 10;
+        timer = 31;
     } else {
         console.log("The game is finished");
         clearInterval(intervalId);
@@ -179,7 +181,7 @@ function declare() {
     console.log(" Current question goes up after timer hits 0" + currentQuestion);
     // The added  renderQuestion() allows the game to move on to the next question.
     renderQuestion();
-    timer = 10;
+    timer = 31;
     run();
     console.log("This timer is for restarting the timer beack to 30 " + timer);
 }
